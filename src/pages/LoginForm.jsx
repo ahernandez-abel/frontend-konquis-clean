@@ -11,14 +11,19 @@ export default function LoginForm() {
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await login(email, password);
-    } catch (err) {
-      setError(err.response?.data?.message || "Usuario o contraseña incorrectos");
+  e.preventDefault();
+  setError("");
+  try {
+    await login(email, password);
+  } catch (err) {
+    if (err.response?.data?.message) {
+      setError(err.response.data.message);
+    } else {
+      setError("No se pudo conectar con el servidor");
     }
-  };
+  }
+};
+
 
   return (
     <div
