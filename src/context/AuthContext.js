@@ -1,7 +1,6 @@
-// src/context/AuthContext.js
 import { createContext, useState, useEffect } from "react";
-import API from "../api/api.js"; // API base para login
-import { jwtDecode } from "jwt-decode"; // ✅ Named export corregido
+import API from "../api/api.js";
+import jwtDecode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -12,18 +11,17 @@ export const AuthProvider = ({ children }) => {
   // -------------------- LOGIN --------------------
   const login = async (email, password) => {
     try {
+      console.log("API baseURL:", API.defaults.baseURL); // 🔹 para verificar producción
       const res = await API.post("/usuarios/login", { email, password });
-
       const token = res.data.data.token;
       localStorage.setItem("token", token);
 
-      const decoded = jwtDecode(token); // { id_usuario, email, rol, nombre }
-
+      const decoded = jwtDecode(token);
       setUser({
         id_usuario: decoded.id_usuario,
         email: decoded.email,
         rol: decoded.rol,
-        nombre: decoded.nombre // ✅ Guardamos nombre
+        nombre: decoded.nombre,
       });
 
       return res.data;
@@ -49,7 +47,7 @@ export const AuthProvider = ({ children }) => {
           id_usuario: decoded.id_usuario,
           email: decoded.email,
           rol: decoded.rol,
-          nombre: decoded.nombre // ✅ Guardamos nombre
+          nombre: decoded.nombre,
         });
       } catch (err) {
         console.error("Error al decodificar JWT:", err);
