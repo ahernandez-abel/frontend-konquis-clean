@@ -196,6 +196,7 @@ body {
   font-family: 'Cinzel', serif;
   background: linear-gradient(135deg, #0a0a0a, #1c1c1c, #111111);
   color: #fff;
+  transition: all 0.3s ease;
 }
 
 /* ---------------- SIDEBAR ---------------- */
@@ -214,6 +215,8 @@ body {
   box-shadow: 8px 0 40px rgba(0,0,0,0.6);
   z-index: 1000;
   overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
 }
 
 .sidebar button {
@@ -227,6 +230,8 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   transition: all 0.2s ease;
+  width: 100%;
+  white-space: normal;
 }
 
 .sidebar button:hover,
@@ -267,6 +272,7 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+/* Contenedor de cada módulo */
 .modulo-container {
   background: #1b1b1b;
   border-radius: 20px;
@@ -294,24 +300,30 @@ button {
 }
 
 /* ---------------- DASHBOARD RESPONSIVE ---------------- */
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: 220px;
+  }
+}
+
 @media (max-width: 768px) {
-  /* Sidebar tipo lista debajo del header */
+  /* Sidebar tipo lista vertical debajo del header */
   .sidebar {
     width: 100%;
-    max-height: calc(100vh - 60px); /* espacio para header */
-    position: fixed; /* fijado en pantalla */
+    max-height: calc(100vh - 60px);
+    position: fixed;
     top: 60px; /* debajo del header */
     left: 0;
     border-radius: 0;
     padding: 10px 20px;
     box-shadow: 0 0 50px rgba(0,0,0,0.7);
     display: none;
-    flex-direction: column; /* lista vertical */
+    flex-direction: column;
     overflow-y: auto; /* scroll vertical */
     overflow-x: hidden; /* sin scroll horizontal */
-    gap: 10px; /* separación entre botones */
+    gap: 12px; /* separación entre botones */
     z-index: 1000;
-    background: rgba(0,0,0,0.95); /* fondo opaco para resaltar */
+    background: rgba(0,0,0,0.95); /* fondo opaco */
   }
 
   /* Mostrar sidebar activo */
@@ -319,12 +331,12 @@ button {
     display: flex;
   }
 
-  /* Botones del sidebar */
+  /* Botones del sidebar móvil */
   .sidebar button {
-    width: 100%; /* ocupan todo el ancho */
+    width: 100%;
     padding: 12px 15px;
     font-size: 1rem;
-    white-space: normal; /* permitir salto de línea si es necesario */
+    white-space: normal;
     text-align: left;
   }
 
@@ -358,7 +370,6 @@ button {
   }
 }
 
-
 /* ---------------- OVERLAY MÓVIL ---------------- */
 .overlay {
   display: none;
@@ -369,6 +380,7 @@ button {
   height: 100%;
   background: rgba(0,0,0,0.5);
   z-index: 950;
+  transition: all 0.3s ease;
 }
 
 .overlay.show {
