@@ -1,19 +1,8 @@
-import React, { useState } from "react";
-import { 
-  FaTasks,          
-  FaAward,          
-  FaUserAlt,        
-  FaUsers,          
-  FaInfoCircle,     
-  FaBell,           
-  FaCalendarAlt,    
-  FaBars,
-  FaTimes
-} from "react-icons/fa";
+// src/components/SidebarConquistador.jsx
+import React from "react";
+import { FaTasks, FaAward, FaUserAlt, FaUsers, FaInfoCircle, FaBell, FaCalendarAlt, FaTimes } from "react-icons/fa";
 
-export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
-
+export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen, setDrawerOpen }) => {
   const botones = [
     { name: "misiones", label: "Misiones", icon: <FaTasks /> },
     { name: "insignias", label: "Insignias", icon: <FaAward /> },
@@ -26,11 +15,6 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
 
   return (
     <>
-      {/* Botón hamburguesa visible solo en móvil */}
-      <div className="hamburger" onClick={() => setDrawerOpen(true)}>
-        <FaBars />
-      </div>
-
       <div className={`sidebar ${drawerOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <button className="close-btn" onClick={() => setDrawerOpen(false)}>
@@ -43,7 +27,7 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
             className={`sidebar-btn ${moduloActivo === btn.name ? "active" : ""}`}
             onClick={() => {
               setModuloActivo(btn.name);
-              setDrawerOpen(false); // cierra drawer en móvil al seleccionar
+              setDrawerOpen(false);
             }}
           >
             <span className="icon">{btn.icon}</span>
@@ -58,21 +42,6 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
       ></div>
 
       <style>{`
-        /* HAMBURGUESA */
-        .hamburger {
-          display: none;
-          position: fixed;
-          top: 15px;
-          left: 15px;
-          z-index: 1001;
-          background: #1b1b1b;
-          padding: 10px;
-          border-radius: 5px;
-          cursor: pointer;
-          color: #fff;
-          font-size: 1.5rem;
-        }
-
         .sidebar {
           background: #1b1b1b;
           color: #fff;
@@ -80,9 +49,8 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
           height: 100vh;
           display: flex;
           flex-direction: column;
-          transition: transform 0.3s ease;
+          position: relative;
         }
-
         .sidebar-btn {
           display: flex;
           align-items: center;
@@ -94,21 +62,12 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
           cursor: pointer;
           transition: background 0.2s;
         }
-
         .sidebar-btn:hover { background: #333; }
         .sidebar-btn.active { background: #28a745; color: #fff; }
-
-        .sidebar-btn .icon {
-          font-size: 1.2rem;
-          margin-right: 10px;
-          display: flex;
-          justify-content: center;
-          width: 25px;
-        }
+        .sidebar-btn .icon { font-size: 1.2rem; margin-right: 10px; display: flex; justify-content: center; width: 25px; }
 
         /* Drawer móvil */
         @media (max-width: 768px) {
-          .hamburger { display: block; }
           .sidebar {
             position: fixed;
             top: 0;
@@ -117,10 +76,9 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
             width: 220px;
             transform: translateX(-100%);
             z-index: 1000;
+            transition: transform 0.3s ease;
           }
-          .sidebar.open {
-            transform: translateX(0);
-          }
+          .sidebar.open { transform: translateX(0); }
           .overlay {
             display: none;
             position: fixed;

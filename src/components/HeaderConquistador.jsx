@@ -1,16 +1,35 @@
-// src/components/Header.jsx
+// src/components/HeaderConquistado.jsx
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext.js";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaBars } from "react-icons/fa";
 
-export const HeaderConquistado = () => {
+export const HeaderConquistado = ({ toggleSidebar }) => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <div className="header">
+    <div className="header" style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "15px 20px",
+      background: "#1b1b1b",
+      color: "#fff",
+      position: "sticky",
+      top: 0,
+      zIndex: 1000
+    }}>
+      {/* Botón hamburguesa móvil */}
+      <button 
+        onClick={toggleSidebar} 
+        className="hamburger-header"
+      >
+        <FaBars />
+      </button>
+
       <div>
         Bienvenido, <span style={{ color: "#ffdd57" }}>{user?.nombre || "Conquistador"}</span>
       </div>
+
       <button
         onClick={logout}
         style={{
@@ -31,6 +50,13 @@ export const HeaderConquistado = () => {
       >
         <FaSignOutAlt /> Cerrar sesión
       </button>
+
+      <style>{`
+        .hamburger-header { display: none; font-size: 1.5rem; color: #ffd700; background: none; border: none; cursor: pointer; }
+        @media (max-width: 768px) {
+          .hamburger-header { display: inline-block; }
+        }
+      `}</style>
     </div>
   );
 };

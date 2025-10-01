@@ -62,6 +62,10 @@ const ConquistadorDashboard = () => {
   const [avatarModalOpen, setAvatarModalOpen] = useState(false);
   const [tiendaOpen, setTiendaOpen] = useState(false);
   const { user } = useContext(AuthContext);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+
+   const toggleSidebar = () => setSidebarOpen(prev => !prev);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -170,12 +174,13 @@ const ConquistadorDashboard = () => {
   const xpMax = 1000;
   const porcentajeXP = Math.min(100, (xpActual / xpMax) * 100);
 
-  return (
-    <div className="dashboard-container" style={{ display: "flex", height: "100vh" }}>
-      <SidebarConquistador setModuloActivo={handleModuloActivo} moduloActivo={moduloActivo} />
+  
+   return (
+    <div className="dashboard-container" style={{ display: "flex", minHeight: "100vh" }}>
+      <SidebarConquistador setModuloActivo={handleModuloActivo} moduloActivo={moduloActivo} drawerOpen={sidebarOpen} setDrawerOpen={setSidebarOpen} />
       <div className="main-content" style={{ flex: 1, padding: "20px", overflowY: "auto" }}>
-        <HeaderConquistado />
-
+        <HeaderConquistado toggleSidebar={toggleSidebar} />
+        
         <div className="rpg-dashboard">
           <div className="perfil-rpg" style={{ display: "flex", gap: "60px", alignItems: "flex-start", flexWrap: "wrap" }}>
             {/* IZQUIERDA: AVATAR */}
