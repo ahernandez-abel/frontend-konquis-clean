@@ -296,43 +296,38 @@ button {
 
 /* ---------------- DASHBOARD RESPONSIVE ---------------- */
 @media (max-width: 1024px) {
-  .main-content {
-    margin-left: 220px;
-  }
+  .main-content { margin-left: 220px; }
 }
 
 @media (max-width: 768px) {
   /* Sidebar móvil: lista vertical */
   .sidebar {
     width: 100%;
-    max-height: calc(100vh - 60px); /* espacio para header */
+    max-height: calc(100vh - 60px);
     position: fixed;
-    top: 60px; /* debajo del header */
+    top: 60px;
     left: -100%;
     border-radius: 0;
     padding: 10px 20px;
     box-shadow: 0 0 50px rgba(0,0,0,0.7);
-    display: none;
-    flex-direction: column; /* LISTA VERTICAL */
-    overflow-y: auto;        /* scroll vertical */
-    overflow-x: hidden;      /* sin scroll horizontal */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
     gap: 10px;
     z-index: 1000;
     background: rgba(0,0,0,0.95);
+    transition: left 0.3s ease;
   }
 
-  .sidebar.active {
-    left: 0;
-    display: flex;
-  }
+  .sidebar.active { left: 0; }
 
-  /* Botones del sidebar móviles */
   .sidebar button {
-    width: 100%;       /* ocupa todo el ancho */
+    width: 100%;
     padding: 12px 15px;
     font-size: 1rem;
     text-align: left;
-    white-space: normal; /* permite salto de línea si es necesario */
+    white-space: normal;
   }
 
   /* Header móvil */
@@ -345,16 +340,10 @@ button {
   }
 
   /* Main content móvil */
-  .main-content {
-    margin-left: 0;
-    padding: 20px;
-  }
+  .main-content { margin-left: 0; padding: 20px; }
 
   /* Módulos móviles */
-  .modulo-container {
-    padding: 20px;
-    min-height: auto;
-  }
+  .modulo-container { padding: 20px; min-height: auto; }
 
   /* Botón hamburguesa */
   .hamburger {
@@ -378,9 +367,7 @@ button {
   transition: all 0.3s ease;
 }
 
-.overlay.show {
-  display: block;
-}
+.overlay.show { display: block; }
 
 
 /* ---------------- USUARIOS - FILTROS Y BUSCADOR ----------------- */

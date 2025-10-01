@@ -1,4 +1,3 @@
-// src/components/SidebarConquistador.jsx
 import React from "react";
 import { 
   FaTasks, FaAward, FaUserAlt, FaUsers, 
