@@ -7,10 +7,11 @@ body {
   background: linear-gradient(145deg, #0a0a0a, #1c1c1c, #111111);
   color: #fff;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; /* mejora legibilidad en móviles */
 }
 
 * {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease; /* transición más ligera para móviles */
 }
 
 /* ---------------- LOGIN RPG STYLE ---------------- */
@@ -159,6 +160,35 @@ body {
   z-index: 1;
 }
 
+/* LOGIN RESPONSIVE */
+@media (max-width: 480px) {
+  .login-form {
+    width: 90%;         /* Ocupa casi todo el ancho de la pantalla */
+    padding: 30px;      /* Menos padding para caber en móviles */
+    gap: 15px;          /* Ajuste de espacio entre inputs */
+  }
+
+  .login-container h1 {
+    font-size: 2.2rem;  /* Reduce el tamaño del título */
+    margin-bottom: 25px;
+  }
+
+  .login-form input {
+    font-size: 1rem;    /* Ajusta tamaño de texto de inputs */
+    padding: 12px;      /* Menor padding */
+  }
+
+  .login-form button {
+    font-size: 1.1rem;  /* Botón más pequeño */
+    padding: 12px;
+  }
+
+  span { /* Icono de mostrar/ocultar password */
+    right: 15px;
+    font-size: 16px;
+  }
+}
+
 
 /* ---------------- DASHBOARD ---------------- */
 .dashboard-container {
@@ -180,6 +210,7 @@ body {
   gap: 25px;
   border-radius: 0 30px 30px 0;
   box-shadow: 8px 0 40px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .sidebar button {
@@ -243,6 +274,60 @@ button {
   letter-spacing: 1px;
 }
 
+/* ---------------- DASHBOARD RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-radius: 0;
+    padding: 20px;
+    box-shadow: none;
+    display: none; /* Se puede activar con un botón hamburguesa */
+  }
+
+  .sidebar.active {
+    display: flex;
+  }
+
+  .header {
+    padding: 20px;
+    font-size: 1.3rem;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    margin-bottom: 20px;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .modulo-container {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .sidebar button {
+    padding: 12px 15px;
+    font-size: 1rem;
+  }
+}
+
+/* Opcional: botón hamburguesa para abrir sidebar en móvil */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    font-size: 1.8rem;
+    color: #ffd700;
+  }
+}
 /* ----------------- CONTENEDOR GENERAL ----------------- */
 .module-container {
   padding: 20px;
@@ -251,6 +336,8 @@ button {
   font-family: 'Cinzel', serif;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ----------------- CABECERA ----------------- */
@@ -260,25 +347,7 @@ button {
   color: #ffd700;
 }
 
-/* ---------------- USUARIOS ---------------- */
-/* ----------------- CONTENEDOR GENERAL ----------------- */
-.module-container {
-  padding: 20px;
-  background: #1b1b1b;
-  color: #fff;
-  font-family: 'Cinzel', serif;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
-/* ----------------- CABECERA ----------------- */
-.module-container h2 {
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-  color: #ffd700;
-}
-
-/* ----------------- FILTROS Y BUSCADOR ----------------- */
+/* ---------------- USUARIOS - FILTROS Y BUSCADOR ----------------- */
 .usuarios-filtros {
   display: flex;
   flex-wrap: wrap;
@@ -294,8 +363,10 @@ button {
   border: none;
   outline: none;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
+/* Fondo y texto */
 .usuarios-filtros input,
 .usuarios-filtros select {
   background: #333;
@@ -306,6 +377,7 @@ button {
   color: #aaa;
 }
 
+/* Botón crear */
 .usuarios-filtros button.btn-crear {
   background: #28a745;
   color: #fff;
@@ -318,6 +390,27 @@ button {
   background: #45d163;
 }
 
+/* ---------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+  .usuarios-filtros {
+    flex-direction: column;
+  }
+
+  .usuarios-filtros input,
+  .usuarios-filtros select,
+  .usuarios-filtros button {
+    width: 100%;
+  }
+
+  .module-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .module-container {
+    padding: 15px;
+  }
+}
+
 /* ----------------- FORMULARIO ----------------- */
 .usuario-form {
   display: flex;
@@ -327,6 +420,8 @@ button {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .usuario-form input,
@@ -338,6 +433,8 @@ button {
   font-size: 1rem;
   background: #333;
   color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .usuario-form input::placeholder {
@@ -372,12 +469,14 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  min-width: 600px; /* Asegura scroll horizontal en móviles */
 }
 
 .usuarios-table th,
 .usuarios-table td {
   padding: 10px;
   text-align: left;
+  white-space: nowrap; /* Evita que se rompa el contenido */
 }
 
 .usuarios-table th {
@@ -411,11 +510,16 @@ button {
   .module-container h2 {
     font-size: 1.5rem;
   }
-}
 
-/* =========================
-   ESTILOS - UNIDAD
-   ========================= */
+  /* Ajuste adicional para el formulario en móvil */
+  .usuario-form {
+    padding: 10px;
+  }
+
+  .usuario-form button {
+    width: 100%;
+  }
+}
 
 /* ----------------- CONTENEDOR GENERAL ----------------- */
 .module-container {
@@ -425,6 +529,8 @@ button {
   font-family: 'Cinzel', serif;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ----------------- CABECERA ----------------- */
@@ -450,6 +556,8 @@ button {
   border: none;
   outline: none;
   font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .unidades-filtros input,
@@ -483,6 +591,8 @@ button {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .unidad-form input,
@@ -494,6 +604,8 @@ button {
   font-size: 1rem;
   background: #333;
   color: #fff;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .unidad-form input::placeholder {
@@ -509,6 +621,7 @@ button {
   color: #111;
   font-weight: bold;
   transition: 0.3s;
+  width: 100%;
 }
 
 .unidad-form button:hover {
@@ -528,12 +641,14 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  min-width: 600px; /* Permite scroll horizontal en móvil */
 }
 
 .unidades-table th,
 .unidades-table td {
   padding: 10px;
   text-align: center;
+  white-space: nowrap; /* Evita que se rompa el contenido */
 }
 
 .unidades-table th {
@@ -570,6 +685,7 @@ button {
   background: #1f1f1f;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  overflow-x: auto; /* Permite scroll horizontal si es necesario */
 }
 
 .ranking-card h3 {
@@ -580,12 +696,14 @@ button {
 .ranking-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 500px; /* Scroll horizontal en móvil */
 }
 
 .ranking-table th,
 .ranking-table td {
   padding: 10px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .ranking-table th {
@@ -634,11 +752,6 @@ button {
     font-size: 1.5rem;
   }
 }
-
-
-
-
-
 /* ---------------- MISIONES ---------------- */
 /* ----------------- CONTENEDOR GENERAL ----------------- */
 .module-container {
@@ -648,6 +761,8 @@ button {
   font-family: 'Cinzel', serif;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ----------------- CABECERA ----------------- */
@@ -673,6 +788,8 @@ button {
   border: none;
   outline: none;
   font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .misiones-filtros input,
@@ -706,6 +823,8 @@ button {
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .misiones-form input,
@@ -718,7 +837,9 @@ button {
   font-size: 1rem;
   background: #333;
   color: #fff;
-  resize: vertical; /* para que se pueda agrandar en vertical */
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 .misiones-form textarea::placeholder {
@@ -734,6 +855,7 @@ button {
   color: #111;
   font-weight: bold;
   transition: 0.3s;
+  width: 100%;
 }
 
 .misiones-form button:hover {
@@ -753,12 +875,14 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  min-width: 600px; /* Para permitir scroll horizontal en móvil */
 }
 
 .misiones-table th,
 .misiones-table td {
   padding: 10px;
   text-align: left;
+  white-space: nowrap; /* Evita que se rompa el contenido */
 }
 
 .misiones-table th {
@@ -797,7 +921,6 @@ button {
   }
 }
 
-
 /* ---------------- GAMIFICACION ---------------- */
 .module-container {
   padding: 25px;
@@ -807,6 +930,8 @@ button {
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
   color: #fff;
   margin-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .module-container h1 {
@@ -849,6 +974,7 @@ button {
   font-size: 1rem;
   margin-right: 10px;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .module-container input:focus,
@@ -862,6 +988,8 @@ button {
 .misiones-chart,
 .recursos-chart {
   margin-bottom: 25px;
+  width: 100%;
+  overflow-x: auto;
 }
 
 /* Temporadas */
@@ -872,6 +1000,8 @@ button {
   border-radius: 25px;
   backdrop-filter: blur(25px);
   box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .temporadas-actions {
@@ -880,6 +1010,12 @@ button {
   gap: 10px;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.temporadas-actions button {
+  flex: 1 1 auto;
+  min-width: 120px;
+  margin-bottom: 5px;
 }
 
 .temporadas-actions button.btn-cerrar {
@@ -919,6 +1055,31 @@ button {
   transform: scale(1.02);
 }
 
+/* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+  .module-container h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .module-container input[type="number"],
+  .module-container input[type="text"],
+  .module-container select {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .temporadas-actions {
+    flex-direction: column;
+  }
+
+  .misiones-chart,
+  .recursos-chart {
+    font-size: 0.9rem;
+  }
+}
+
 /* ---------------- CONFIGURACIÓN ---------------- */
 .config-module {
   padding: 25px;
@@ -929,6 +1090,8 @@ button {
   color: #fff;
   margin-bottom: 30px;
   font-family: 'Cinzel', serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .config-module h2 {
@@ -936,10 +1099,14 @@ button {
   font-size: 2rem;
   color: #ffd700;
   text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
+  text-align: left;
 }
 
 .config-module .tab-buttons {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .config-module .tab-buttons button {
@@ -948,10 +1115,11 @@ button {
   border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
-  margin-right: 10px;
   transition: all 0.3s ease;
   background: linear-gradient(90deg, #555, #777);
   color: #fff;
+  flex: 1 1 auto;
+  min-width: 100px;
 }
 
 .config-module .tab-buttons button.active {
@@ -977,6 +1145,7 @@ button {
   margin-right: 10px;
   margin-top: 10px;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .config-module input:focus {
@@ -995,6 +1164,7 @@ button {
   background: linear-gradient(90deg, #ffd700, #ffc700);
   color: #111;
   margin-top: 10px;
+  width: fit-content;
 }
 
 .config-module button:hover {
@@ -1006,6 +1176,7 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  overflow-x: auto;
 }
 
 .config-module th,
@@ -1026,6 +1197,34 @@ button {
   margin-top: 10px;
   font-weight: bold;
 }
+
+/* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+  .config-module h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .config-module .tab-buttons {
+    flex-direction: column;
+  }
+
+  .config-module input[type="text"],
+  .config-module input[type="color"],
+  .config-module input[type="checkbox"] {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .config-module button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .config-module table {
+    font-size: 0.9rem;
+  }
+}
 /* ---------------- AUDITORÍA ---------------- */
 .logs-module {
   padding: 25px;
@@ -1036,6 +1235,8 @@ button {
   color: #fff;
   margin-bottom: 30px;
   font-family: 'Cinzel', serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .logs-module h2 {
@@ -1043,17 +1244,20 @@ button {
   font-size: 2rem;
   color: #ffd700;
   text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
+  text-align: left;
 }
 
 /* Filtros */
 .logs-module .filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 15px;
 }
 
 .logs-module .filters input {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 150px;
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,215,0,0.3);
@@ -1061,6 +1265,7 @@ button {
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .logs-module .filters input:focus {
@@ -1074,6 +1279,8 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  overflow-x: auto;
+  display: block;
 }
 
 .logs-module th,
@@ -1081,6 +1288,7 @@ button {
   padding: 10px;
   text-align: left;
   border: 1px solid rgba(255,215,0,0.3);
+  white-space: nowrap;
 }
 
 .logs-module tr:hover {
@@ -1095,6 +1303,27 @@ button {
   font-weight: bold;
 }
 
+/* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+  .logs-module h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .logs-module .filters {
+    flex-direction: column;
+  }
+
+  .logs-module .filters input {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .logs-module table {
+    font-size: 0.9rem;
+  }
+}
+
 /* ---------------- DASHBOARD RPG ---------------- */
 .rpg-dashboard {
   display: flex;
@@ -1104,14 +1333,16 @@ button {
   background: #1a1a1a;
   color: #f0e6d2;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 /* ---------------- PERFIL RPG ---------------- */
 .perfil-rpg {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap; /* permite que los elementos se ajusten en pantallas pequeñas */
   align-items: center;
-  gap: 40px;
+  gap: 20px; /* se reduce un poco en móviles */
   background: #1b1b1b;
   padding: 20px;
   border-radius: 12px;
@@ -1122,6 +1353,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 0 0 auto;
 }
 
 .avatar {
@@ -1154,82 +1386,12 @@ button {
   font-size: 12px;
 }
 
-/* ---------------- MÓDULO ACTIVO ---------------- */
-.modulo-rpg {
-  margin-top: 20px;
-}
-
-/* ---------------- SIDEBAR RPG ---------------- */
-.sidebar {
-  width: 200px;
-  background: #1b1b1b;
-  color: #f0e6d2;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  border-right: 2px solid #333;
-}
-
-.sidebar button {
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  background: none;
-  border: none;
-  color: #f0e6d2;
-  cursor: pointer;
-  font-family: 'Press Start 2P', cursive;
-  transition: 0.3s;
-  gap: 10px;
-}
-
-.sidebar button:hover,
-.sidebar button.active {
-  background: #333;
-  border-left: 4px solid #ffd700;
-}
-
-/* ---------------- HEADER RPG ---------------- */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #1b1b1b;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
-.header span {
-  color: #ffd700;
-  font-weight: bold;
-}
-
-.header button {
-  background: rgba(255,221,87,0.2);
-  border: none;
-  border-radius: 12px;
-  padding: 8px 12px;
-  color: #111;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.3s ease;
-}
-
-.header button:hover {
-  background: #ffd700;
-  color: #111;
-}
-
 /* ----------------- RESPONSIVE ----------------- */
 @media (max-width: 768px) {
   .perfil-rpg {
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 15px;
   }
 
   .avatar {
@@ -1237,20 +1399,84 @@ button {
     height: 100px;
   }
 
-  .stats-rpg {
-    font-size: 11px;
+  .barra-xp {
+    width: 100px;
   }
 
+  .stats-rpg {
+    font-size: 10px;
+    text-align: center;
+  }
+}
+
+/* ----------------- RESPONSIVE MEJORADO ----------------- */
+@media (max-width: 768px) {
+  /* Perfil RPG */
+  .perfil-rpg {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .barra-xp {
+    width: 90px;
+  }
+
+  .stats-rpg {
+    font-size: 10px;
+    text-align: center;
+  }
+
+  /* Sidebar RPG */
   .sidebar {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 2px solid #333;
+    padding: 0;
   }
 
   .sidebar button {
     flex: 1 1 50%;
     justify-content: center;
     padding: 10px 0;
+    font-size: 0.75rem;
+    border-left: none;
+  }
+
+  .sidebar button.active {
+    border-left: none;
+    border-bottom: 4px solid #ffd700;
+  }
+
+  /* Header RPG */
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .header span {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .header button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  /* Módulo activo */
+  .modulo-rpg {
+    margin-top: 10px;
+    padding: 10px;
   }
 }
 
@@ -1301,12 +1527,44 @@ button {
   text-align: center;
 }
 
+/* ----------------- RESPONSIVE MISIONES RPG ----------------- */
+@media (max-width: 768px) {
+  .misiones-filtros-rpg {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .misiones-filtros-rpg input {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .misiones-columns-rpg {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .misiones-col {
+    min-width: 100%;
+    padding: 10px;
+  }
+
+  .misiones-col h3 {
+    font-size: 0.9rem;
+  }
+
+  .misiones-col p {
+    font-size: 0.8rem;
+  }
+}
+
 /* ---------------- MISION CARD RPG ---------------- */
 .mision-card {
   background: #2a2a2a;
   border-radius: 10px;
   padding: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   font-family: 'Press Start 2P', cursive;
@@ -1314,7 +1572,7 @@ button {
 
 .mision-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(255,215,0,0.5);
+  box-shadow: 0 4px 15px rgba(255,215,0,0.6);
 }
 
 /* Bordes según estado */
@@ -1330,14 +1588,34 @@ button {
   border-left: 4px solid #28a745;
 }
 
+/* Contenido interno */
+.mision-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #ffd700;
+  text-align: center;
+}
+
+.mision-card p {
+  font-size: 0.8rem;
+  color: #ccc;
+  text-align: center;
+  margin: 0;
+}
+
 /* ----------------- RESPONSIVE ----------------- */
 @media (max-width: 768px) {
   .misiones-columns-rpg {
     flex-direction: column;
+    gap: 10px;
   }
 
-  .misiones-col h3 {
-    font-size: 0.9rem;
+  .mision-card h4 {
+    font-size: 0.85rem;
+  }
+
+  .mision-card p {
+    font-size: 0.75rem;
   }
 }
 
@@ -1372,11 +1650,12 @@ button {
   color: #ffd700;
   font-size: 0.8rem;
   margin: 0;
+  text-align: center;
 }
 
 .insignia-card-rpg:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(255,215,0,0.5);
+  box-shadow: 0 4px 15px rgba(255,215,0,0.6);
 }
 
 /* ----------------- RESPONSIVE ----------------- */
@@ -1387,7 +1666,7 @@ button {
 
   .insignia-card-rpg {
     width: 100px;
-    padding: 10px;
+    padding: 12px;
   }
 
   .insignia-card-rpg img {
@@ -1399,7 +1678,6 @@ button {
     font-size: 0.7rem;
   }
 }
-
 /* ---------------- RANKING INDIVIDUAL RPG ---------------- */
 .ranking-filtros-rpg {
   display: flex;
@@ -1417,6 +1695,13 @@ button {
   background: #333;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
+  transition: all 0.3s ease;
+}
+
+.ranking-filtros-rpg input:focus {
+  outline: none;
+  border: 1px solid #ffd700;
+  box-shadow: 0 0 10px rgba(255,215,0,0.5);
 }
 
 .ranking-card-rpg {
@@ -1436,6 +1721,7 @@ button {
 .ranking-table-rpg td {
   padding: 10px;
   text-align: left;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .ranking-table-rpg th {
@@ -1455,6 +1741,7 @@ button {
   background: rgba(255,215,0,0.2);
   box-shadow: 0 2px 8px rgba(255,215,0,0.3);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 /* ----------------- RESPONSIVE ----------------- */
@@ -1469,7 +1756,7 @@ button {
   }
 }
 
-/* ---------------- RANKING UNIDAD RPG ---------------- */
+/* ---------------- RANKING RPG ---------------- */
 .ranking-filtros-rpg {
   display: flex;
   flex-wrap: wrap;
@@ -1486,6 +1773,13 @@ button {
   background: #333;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
+  transition: all 0.3s ease;
+}
+
+.ranking-filtros-rpg input:focus {
+  outline: none;
+  border: 1px solid #ffd700;
+  box-shadow: 0 0 10px rgba(255,215,0,0.5);
 }
 
 .ranking-card-rpg {
@@ -1505,6 +1799,7 @@ button {
 .ranking-table-rpg td {
   padding: 10px;
   text-align: left;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .ranking-table-rpg th {
@@ -1524,6 +1819,7 @@ button {
   background: rgba(255,215,0,0.2);
   box-shadow: 0 2px 8px rgba(255,215,0,0.3);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 /* ----------------- RESPONSIVE ----------------- */
@@ -1538,7 +1834,6 @@ button {
   }
 }
 
-
 /* ---------------- UNIDAD INFO RPG ---------------- */
 .unidad-card-rpg {
   background: #1b1b1b;
@@ -1550,6 +1845,7 @@ button {
   color: #fff;
   max-width: 400px;
   margin: 0 auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .unidad-card-rpg p {
@@ -1560,12 +1856,9 @@ button {
   color: #ffd700;
 }
 
-/* ----------------- RESPONSIVE ----------------- */
-@media (max-width: 768px) {
-  .unidad-card-rpg {
-    padding: 15px;
-    font-size: 0.85rem;
-  }
+.unidad-card-rpg:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255,215,0,0.5);
 }
 
 /* ---------------- NOTIFICACIONES RPG ---------------- */
@@ -1610,6 +1903,11 @@ button {
 
 /* ----------------- RESPONSIVE ----------------- */
 @media (max-width: 768px) {
+  .unidad-card-rpg {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+
   .notificacion-card-rpg {
     padding: 12px;
     font-size: 0.8rem;
@@ -1654,7 +1952,6 @@ button {
     font-size: 0.85rem;
   }
 }
-
 
 /* ---------------- PROGRESO DE NIVEL RPG ---------------- */
 .progreso-filtros-rpg {
@@ -1723,6 +2020,7 @@ button {
     font-size: 0.85rem;
   }
 }
+
 
 /* ---------------- TIENDA RPG ---------------- */
 .modal-tienda {
