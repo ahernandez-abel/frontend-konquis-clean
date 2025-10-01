@@ -18,7 +18,7 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
 
   return (
     <>
-      <div className={`sidebar ${drawerOpen ? "open" : ""}`}>
+      <div className={`sidebar ${drawerOpen ? "active" : ""}`}>
         <div className="sidebar-header">
           <button className="close-btn" onClick={() => setDrawerOpen(false)}>
             <FaTimes />
@@ -39,81 +39,10 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
         ))}
       </div>
 
-      {/* Fondo oscuro cuando está abierto en móvil */}
       <div 
         className={`overlay ${drawerOpen ? "show" : ""}`} 
         onClick={() => setDrawerOpen(false)}
       ></div>
-
-      <style>{`
-        .sidebar {
-          background: #1b1b1b;
-          color: #fff;
-          width: 220px;
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 1100;
-          transform: translateX(-100%);
-          transition: transform 0.3s ease;
-        }
-        .sidebar.open {
-          transform: translateX(0);
-        }
-        .sidebar-btn {
-          display: flex;
-          align-items: center;
-          padding: 12px 15px;
-          border: none;
-          background: none;
-          color: #fff;
-          font-size: 0.9rem;
-          cursor: pointer;
-          transition: background 0.2s;
-        }
-        .sidebar-btn:hover { background: #333; }
-        .sidebar-btn.active { background: #28a745; color: #fff; }
-        .sidebar-btn .icon { font-size: 1.2rem; margin-right: 10px; width: 25px; }
-
-        .sidebar-header {
-          display: flex;
-          justify-content: flex-end;
-          padding: 10px;
-        }
-        .close-btn {
-          background: none;
-          border: none;
-          color: #fff;
-          font-size: 1.5rem;
-          cursor: pointer;
-        }
-
-        /* Overlay */
-        .overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0,0,0,0.5);
-          z-index: 1000;
-        }
-        .overlay.show { display: block; }
-
-        /* Sidebar fijo en escritorio */
-        @media (min-width: 1024px) {
-          .sidebar {
-            transform: translateX(0);
-            position: fixed;
-          }
-          .close-btn { display: none; }
-          .overlay { display: none; }
-        }
-      `}</style>
     </>
   );
 };
