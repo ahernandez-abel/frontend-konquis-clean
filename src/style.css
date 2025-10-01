@@ -298,7 +298,7 @@ button {
   /* Sidebar tipo lista debajo del header */
   .sidebar {
     width: 100%;
-    height: auto;
+    max-height: calc(100vh - 60px); /* deja espacio para header */
     position: relative;
     top: 0;
     left: 0;
@@ -306,12 +306,24 @@ button {
     padding: 10px 25px;
     box-shadow: none;
     display: none;
+    flex-direction: column; /* lista vertical */
+    overflow-y: auto; /* scroll vertical */
+    overflow-x: hidden; /* sin scroll horizontal */
+    gap: 10px; /* separación entre botones */
   }
 
   .sidebar.active {
     display: flex;
   }
 
+  .sidebar button {
+    width: 100%; /* ocupa todo el ancho */
+    padding: 12px 15px;
+    font-size: 1rem;
+    white-space: nowrap; /* evita que el texto se rompa */
+  }
+
+  /* Header móvil */
   .header {
     padding: 20px;
     font-size: 1.3rem;
@@ -320,21 +332,19 @@ button {
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   }
 
+  /* Main content móvil */
   .main-content {
     margin-left: 0;
     padding: 20px;
   }
 
+  /* Módulos móviles */
   .modulo-container {
     padding: 20px;
     min-height: auto;
   }
 
-  .sidebar button {
-    padding: 12px 15px;
-    font-size: 1rem;
-  }
-
+  /* Botón hamburguesa */
   .hamburger {
     display: block;
     font-size: 1.8rem;
@@ -342,6 +352,7 @@ button {
     cursor: pointer;
   }
 }
+
 
 /* ---------------- OVERLAY MÓVIL ---------------- */
 .overlay {
