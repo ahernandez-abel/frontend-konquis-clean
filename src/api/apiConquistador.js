@@ -1,22 +1,20 @@
 import axios from "axios";
 
-// ------------------- URL BASE -------------------
+// URL base tomada de variable de entorno
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
-// Crear instancia de Axios con baseURL
 const API = axios.create({
   baseURL: API_URL,
   headers: { "Content-Type": "application/json" },
 });
 
-// Interceptor para agregar token automáticamente a todas las solicitudes
 API.interceptors.request.use(
-  config => {
+  (config) => {
     const token = localStorage.getItem("token");
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
-  error => Promise.reject(error)
+  (error) => Promise.reject(error)
 );
 
 // ------------------ USUARIOS ------------------
@@ -52,5 +50,4 @@ export const resumenTemporada = () => API.get("/conquistador/temporada");
 // ------------------ PROGRESO NIVEL ------------------
 export const progresoNivel = () => API.get("/conquistador/progreso");
 
-// ------------------- EXPORT -------------------
 export default API;

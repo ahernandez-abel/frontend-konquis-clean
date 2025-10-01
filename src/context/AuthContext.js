@@ -1,7 +1,6 @@
-// src/context/AuthContext.js
 import { createContext, useState, useEffect } from "react";
-import API from "../api/api.js"; // API base para login
-import { jwtDecode } from "jwt-decode"; // ✅ Named export compatible con versión reciente
+import API from "../api/api.js";
+import jwtDecode from "jwt-decode"; // CORREGIDO: default export
 
 export const AuthContext = createContext();
 
@@ -12,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   // -------------------- LOGIN --------------------
   const login = async (email, password) => {
     try {
-      console.log("API baseURL:", API.defaults.baseURL); // 🔹 para verificar que sea la URL de Render
+      console.log("API baseURL:", API.defaults.baseURL); // Para verificar URL de Render
       const res = await API.post("/usuarios/login", { email, password });
 
       const token = res.data.data.token;
