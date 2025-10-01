@@ -308,17 +308,35 @@ button {
   /* Sidebar móvil */
   .sidebar {
     width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
+    max-height: calc(100vh - 60px); /* espacio para el header */
+    position: fixed;
+    top: 60px; /* debajo del header */
     left: -100%;
     border-radius: 0;
-    padding: 20px;
+    padding: 10px 20px;
     box-shadow: 0 0 50px rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column; /* LISTA VERTICAL */
+    overflow-y: auto;        /* scroll vertical */
+    overflow-x: hidden;      /* sin scroll horizontal */
+    gap: 10px;
+    z-index: 1000;
+    background: rgba(0,0,0,0.95);
   }
 
+  /* Mostrar sidebar activo */
   .sidebar.active {
     left: 0;
+    display: flex;
+  }
+
+  /* Botones del sidebar móviles */
+  .sidebar button {
+    width: 100%;       /* ocupa todo el ancho */
+    padding: 12px 15px;
+    font-size: 1rem;
+    text-align: left;
+    white-space: normal; /* permite salto de línea si el texto es largo */
   }
 
   /* Header móvil */
@@ -326,8 +344,8 @@ button {
     padding: 20px;
     font-size: 1.3rem;
     border-radius: 0;
+    margin-bottom: 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    margin-bottom: 20px;
   }
 
   /* Main content móvil */
@@ -342,12 +360,6 @@ button {
     min-height: auto;
   }
 
-  /* Botones sidebar */
-  .sidebar button {
-    padding: 12px 15px;
-    font-size: 1rem;
-  }
-
   /* Botón hamburguesa */
   .hamburger {
     display: block;
@@ -356,6 +368,7 @@ button {
     cursor: pointer;
   }
 }
+
 
 /* ---------------- OVERLAY MÓVIL ---------------- */
 .overlay {
