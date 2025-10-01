@@ -205,14 +205,13 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,0.85); /* fondo más oscuro para contraste */
+  background: rgba(0,0,0,0.85);
   padding: 35px 25px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   border-radius: 0 30px 30px 0;
   box-shadow: 8px 0 40px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease, width 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
 }
@@ -260,7 +259,7 @@ body {
 
 /* ---------------- MAIN CONTENT ---------------- */
 .main-content {
-  margin-left: 270px; /* espacio para sidebar en desktop */
+  margin-left: 270px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -270,7 +269,7 @@ body {
 
 /* Contenedor de cada módulo */
 .modulo-container {
-  background: #1b1b1b; /* fondo oscuro sólido */
+  background: #1b1b1b;
   border-radius: 20px;
   padding: 30px;
   min-height: calc(100vh - 160px);
@@ -280,12 +279,10 @@ body {
   font-family: 'Cinzel', serif;
 }
 
-/* Títulos de módulos */
 .modulo-container h2 {
   margin-bottom: 15px;
   font-size: 1.8rem;
   color: #ffd700;
-  font-family: 'Cinzel', serif;
 }
 
 /* ---------------- BOTONES GENERALES ---------------- */
@@ -305,10 +302,10 @@ button {
 }
 
 @media (max-width: 768px) {
-  /* Sidebar móvil */
+  /* Sidebar móvil: lista vertical */
   .sidebar {
     width: 100%;
-    max-height: calc(100vh - 60px); /* espacio para el header */
+    max-height: calc(100vh - 60px); /* espacio para header */
     position: fixed;
     top: 60px; /* debajo del header */
     left: -100%;
@@ -324,7 +321,6 @@ button {
     background: rgba(0,0,0,0.95);
   }
 
-  /* Mostrar sidebar activo */
   .sidebar.active {
     left: 0;
     display: flex;
@@ -336,7 +332,7 @@ button {
     padding: 12px 15px;
     font-size: 1rem;
     text-align: left;
-    white-space: normal; /* permite salto de línea si el texto es largo */
+    white-space: normal; /* permite salto de línea si es necesario */
   }
 
   /* Header móvil */
@@ -369,7 +365,6 @@ button {
   }
 }
 
-
 /* ---------------- OVERLAY MÓVIL ---------------- */
 .overlay {
   display: none;
@@ -386,6 +381,7 @@ button {
 .overlay.show {
   display: block;
 }
+
 
 /* ---------------- USUARIOS - FILTROS Y BUSCADOR ----------------- */
 .usuarios-filtros {
