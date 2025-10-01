@@ -189,7 +189,6 @@ body {
   }
 }
 
-
 /* ---------------- DASHBOARD ---------------- */
 .dashboard-container {
   display: flex;
@@ -198,6 +197,7 @@ body {
   background: linear-gradient(135deg, #0a0a0a, #1c1c1c, #111111);
   color: #fff;
 }
+
 /* ---------------- SIDEBAR ---------------- */
 .sidebar {
   width: 270px;
@@ -205,8 +205,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(255,215,0,0.06);
-  backdrop-filter: blur(30px);
+  background: rgba(0,0,0,0.85); /* fondo más oscuro para contraste */
   padding: 35px 25px;
   display: flex;
   flex-direction: column;
@@ -220,8 +219,8 @@ body {
 
 .sidebar button {
   background: none;
-  border: none;
-  color: #fff;
+  border: 2px solid transparent;
+  color: #ffd700;
   text-align: left;
   padding: 18px 25px;
   border-radius: 20px;
@@ -233,15 +232,15 @@ body {
 
 .sidebar button:hover,
 .sidebar button.active {
-  background: rgba(255,215,0,0.35);
-  transform: scale(1.07);
+  background: rgba(255,215,0,0.2);
+  border-color: #ffd700;
+  transform: scale(1.05);
   box-shadow: 0 0 15px rgba(255,215,0,0.6);
 }
 
 /* ---------------- HEADER ---------------- */
 .header {
-  background: rgba(255,215,0,0.07);
-  backdrop-filter: blur(30px);
+  background: rgba(0,0,0,0.85);
   padding: 25px 50px;
   font-size: 1.5rem;
   font-weight: bold;
@@ -256,6 +255,7 @@ body {
   top: 0;
   z-index: 900;
   margin-bottom: 35px;
+  font-family: 'Cinzel', serif;
 }
 
 /* ---------------- MAIN CONTENT ---------------- */
@@ -270,13 +270,22 @@ body {
 
 /* Contenedor de cada módulo */
 .modulo-container {
-  background: rgba(255,215,0,0.06);
-  backdrop-filter: blur(30px);
-  border-radius: 30px;
-  padding: 35px;
+  background: #1b1b1b; /* fondo oscuro sólido */
+  border-radius: 20px;
+  padding: 30px;
   min-height: calc(100vh - 160px);
   box-shadow: 0 20px 60px rgba(0,0,0,0.7);
   overflow: hidden;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+}
+
+/* Títulos de módulos */
+.modulo-container h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: #ffd700;
+  font-family: 'Cinzel', serif;
 }
 
 /* ---------------- BOTONES GENERALES ---------------- */
@@ -285,6 +294,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.2s ease;
+  color: #ffd700;
 }
 
 /* ---------------- DASHBOARD RESPONSIVE ---------------- */
@@ -362,25 +372,6 @@ button {
 
 .overlay.show {
   display: block;
-}
-
-/* ----------------- CONTENEDOR GENERAL ----------------- */
-.module-container {
-  padding: 20px;
-  background: #1b1b1b;
-  color: #fff;
-  font-family: 'Cinzel', serif;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ----------------- CABECERA ----------------- */
-.module-container h2 {
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-  color: #ffd700;
 }
 
 /* ---------------- USUARIOS - FILTROS Y BUSCADOR ----------------- */
