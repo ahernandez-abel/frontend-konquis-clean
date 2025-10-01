@@ -205,14 +205,13 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0,0,0,0.85); /* fondo más oscuro para contraste */
+  background: rgba(0,0,0,0.85);
   padding: 35px 25px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   border-radius: 0 30px 30px 0;
   box-shadow: 8px 0 40px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease, width 0.3s ease;
   z-index: 1000;
   overflow-y: auto;
 }
@@ -260,7 +259,7 @@ body {
 
 /* ---------------- MAIN CONTENT ---------------- */
 .main-content {
-  margin-left: 270px; /* espacio para sidebar en desktop */
+  margin-left: 270px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -268,9 +267,8 @@ body {
   transition: margin-left 0.3s ease;
 }
 
-/* Contenedor de cada módulo */
 .modulo-container {
-  background: #1b1b1b; /* fondo oscuro sólido */
+  background: #1b1b1b;
   border-radius: 20px;
   padding: 30px;
   min-height: calc(100vh - 160px);
@@ -280,12 +278,10 @@ body {
   font-family: 'Cinzel', serif;
 }
 
-/* Títulos de módulos */
 .modulo-container h2 {
   margin-bottom: 15px;
   font-size: 1.8rem;
   color: #ffd700;
-  font-family: 'Cinzel', serif;
 }
 
 /* ---------------- BOTONES GENERALES ---------------- */
@@ -298,57 +294,47 @@ button {
 }
 
 /* ---------------- DASHBOARD RESPONSIVE ---------------- */
-@media (max-width: 1024px) {
-  .main-content {
-    margin-left: 220px;
-  }
-}
-
 @media (max-width: 768px) {
-  /* Sidebar móvil */
+  /* Sidebar tipo lista debajo del header */
   .sidebar {
     width: 100%;
     height: auto;
-    position: absolute;
+    position: relative;
     top: 0;
-    left: -100%;
+    left: 0;
     border-radius: 0;
-    padding: 20px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.7);
+    padding: 10px 25px;
+    box-shadow: none;
+    display: none;
   }
 
   .sidebar.active {
-    left: 0;
+    display: flex;
   }
 
-  /* Header móvil */
   .header {
     padding: 20px;
     font-size: 1.3rem;
     border-radius: 0;
+    margin-bottom: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    margin-bottom: 20px;
   }
 
-  /* Main content móvil */
   .main-content {
     margin-left: 0;
     padding: 20px;
   }
 
-  /* Módulos móviles */
   .modulo-container {
     padding: 20px;
     min-height: auto;
   }
 
-  /* Botones sidebar */
   .sidebar button {
     padding: 12px 15px;
     font-size: 1rem;
   }
 
-  /* Botón hamburguesa */
   .hamburger {
     display: block;
     font-size: 1.8rem;
@@ -367,12 +353,12 @@ button {
   height: 100%;
   background: rgba(0,0,0,0.5);
   z-index: 950;
-  transition: all 0.3s ease;
 }
 
 .overlay.show {
   display: block;
 }
+
 
 /* ---------------- USUARIOS - FILTROS Y BUSCADOR ----------------- */
 .usuarios-filtros {
