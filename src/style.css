@@ -298,29 +298,34 @@ button {
   /* Sidebar tipo lista debajo del header */
   .sidebar {
     width: 100%;
-    max-height: calc(100vh - 60px); /* deja espacio para header */
-    position: relative;
-    top: 0;
+    max-height: calc(100vh - 60px); /* espacio para header */
+    position: fixed; /* fijado en pantalla */
+    top: 60px; /* debajo del header */
     left: 0;
     border-radius: 0;
-    padding: 10px 25px;
-    box-shadow: none;
+    padding: 10px 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.7);
     display: none;
     flex-direction: column; /* lista vertical */
     overflow-y: auto; /* scroll vertical */
     overflow-x: hidden; /* sin scroll horizontal */
     gap: 10px; /* separación entre botones */
+    z-index: 1000;
+    background: rgba(0,0,0,0.95); /* fondo opaco para resaltar */
   }
 
+  /* Mostrar sidebar activo */
   .sidebar.active {
     display: flex;
   }
 
+  /* Botones del sidebar */
   .sidebar button {
-    width: 100%; /* ocupa todo el ancho */
+    width: 100%; /* ocupan todo el ancho */
     padding: 12px 15px;
     font-size: 1rem;
-    white-space: nowrap; /* evita que el texto se rompa */
+    white-space: normal; /* permitir salto de línea si es necesario */
+    text-align: left;
   }
 
   /* Header móvil */
@@ -328,7 +333,7 @@ button {
     padding: 20px;
     font-size: 1.3rem;
     border-radius: 0;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   }
 
