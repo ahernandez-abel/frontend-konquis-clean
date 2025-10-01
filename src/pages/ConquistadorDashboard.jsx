@@ -177,7 +177,7 @@ const ConquistadorDashboard = () => {
         <HeaderConquistado />
 
         <div className="rpg-dashboard">
-          <div className="perfil-rpg" style={{ display: "flex", gap: "60px", alignItems: "flex-start" }}>
+          <div className="perfil-rpg" style={{ display: "flex", gap: "60px", alignItems: "flex-start", flexWrap: "wrap" }}>
             {/* IZQUIERDA: AVATAR */}
             <div className="avatar-section" style={{ flex: "0 0 300px", textAlign: "center" }}>
               <img
@@ -213,7 +213,7 @@ const ConquistadorDashboard = () => {
                 </div>
               </div>
 
-              <div style={{ marginTop: "15px", display: "flex", gap: "10px", justifyContent: "center" }}>
+              <div style={{ marginTop: "15px", display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
                 <button onClick={() => setAvatarModalOpen(true)} style={{ padding: "10px 14px", borderRadius: "8px", border: "2px solid #ffd700", background: "#1b1b1b", color: "#ffd700", fontWeight: "bold", cursor: "pointer" }}>
                   Cambiar Avatar
                 </button>
@@ -224,7 +224,7 @@ const ConquistadorDashboard = () => {
             </div>
 
             {/* DERECHA: STATS */}
-            <div className="stats-section" style={{ flex: 1, display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "15px" }}>
+            <div className="stats-section" style={{ flex: 1, display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "15px", minWidth: "250px" }}>
               {[{ label: "🎯 Misiones", valor: misionesCompletadasCount },
                 { label: "🏅 Insignias", valor: insignias.length },
                 { label: "💰 Monedas", valor: usuario.monedas || 0 },
@@ -262,6 +262,36 @@ const ConquistadorDashboard = () => {
           50% { box-shadow: 0 0 25px #ffd700, 0 0 50px #ffd70088; transform: scale(1.05); }
           100% { box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd70066; transform: scale(1); }
         }
+
+        /* RESPONSIVE DASHBOARD */
+        @media (max-width: 1024px) {
+          .perfil-rpg { flex-direction: column; align-items: center; gap: 25px; }
+          .avatar-section { flex: none; width: 80%; text-align: center; }
+          .avatar-section img { width: 150px !important; height: 150px !important; }
+          .barra-xp-container { width: 90% !important; }
+          .stats-section { grid-template-columns: 1fr 1fr !important; width: 100%; }
+          .stat-card { padding: 10px !important; font-size: 0.9rem !important; }
+        }
+
+        @media (max-width: 768px) {
+          .avatar-section img { width: 130px !important; height: 130px !important; }
+          .stat-card h4 { font-size: 1rem !important; }
+        }
+
+        @media (max-width: 480px) {
+          .avatar-section img { width: 110px !important; height: 110px !important; }
+          .stat-card { font-size: 0.8rem !important; padding: 8px !important; }
+          .barra-xp-container { width: 95% !important; }
+        }
+
+        /* TABLA ADAPTABLE */
+        .modulo-rpg table {
+          width: 100%;
+          table-layout: auto;
+          overflow-x: auto;
+          display: block;
+        }
+        .modulo-rpg th, .modulo-rpg td { padding: 8px; text-align: left; }
       `}</style>
     </div>
   );
