@@ -7,11 +7,12 @@ import {
   FaInfoCircle,     
   FaBell,           
   FaCalendarAlt,    
-  FaBars
+  FaBars,
+  FaTimes
 } from "react-icons/fa";
 
 export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const botones = [
     { name: "misiones", label: "Misiones", icon: <FaTasks /> },
@@ -25,46 +26,61 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
 
   return (
     <>
-      <div className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
-        <div className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-          <FaBars />
+      {/* Botón hamburguesa visible solo en móvil */}
+      <div className="hamburger" onClick={() => setDrawerOpen(true)}>
+        <FaBars />
+      </div>
+
+      <div className={`sidebar ${drawerOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <button className="close-btn" onClick={() => setDrawerOpen(false)}>
+            <FaTimes />
+          </button>
         </div>
         {botones.map((btn) => (
           <button
             key={btn.name}
             className={`sidebar-btn ${moduloActivo === btn.name ? "active" : ""}`}
-            onClick={() => setModuloActivo(btn.name)}
+            onClick={() => {
+              setModuloActivo(btn.name);
+              setDrawerOpen(false); // cierra drawer en móvil al seleccionar
+            }}
           >
             <span className="icon">{btn.icon}</span>
-            {sidebarOpen && <span className="label">{btn.label}</span>}
+            <span className="label">{btn.label}</span>
           </button>
         ))}
       </div>
 
+      <div 
+        className={`overlay ${drawerOpen ? "show" : ""}`} 
+        onClick={() => setDrawerOpen(false)}
+      ></div>
+
       <style>{`
+        /* HAMBURGUESA */
+        .hamburger {
+          display: none;
+          position: fixed;
+          top: 15px;
+          left: 15px;
+          z-index: 1001;
+          background: #1b1b1b;
+          padding: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          color: #fff;
+          font-size: 1.5rem;
+        }
+
         .sidebar {
           background: #1b1b1b;
           color: #fff;
           width: 220px;
-          min-width: 60px;
-          transition: width 0.3s;
+          height: 100vh;
           display: flex;
           flex-direction: column;
-          height: 100vh;
-          overflow: hidden;
-          position: relative;
-        }
-
-        .sidebar.closed {
-          width: 60px;
-        }
-
-        .sidebar-toggle {
-          display: none;
-          padding: 15px;
-          font-size: 1.5rem;
-          cursor: pointer;
-          text-align: center;
+          transition: transform 0.3s ease;
         }
 
         .sidebar-btn {
@@ -77,17 +93,10 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
           font-size: 0.9rem;
           cursor: pointer;
           transition: background 0.2s;
-          white-space: nowrap;
         }
 
-        .sidebar-btn:hover {
-          background: #333;
-        }
-
-        .sidebar-btn.active {
-          background: #28a745;
-          color: #fff;
-        }
+        .sidebar-btn:hover { background: #333; }
+        .sidebar-btn.active { background: #28a745; color: #fff; }
 
         .sidebar-btn .icon {
           font-size: 1.2rem;
@@ -97,38 +106,34 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo }) => {
           width: 25px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        /* Drawer móvil */
+        @media (max-width: 768px) {
+          .hamburger { display: block; }
           .sidebar {
             position: fixed;
-            z-index: 1000;
-            height: 100%;
             top: 0;
             left: 0;
+            height: 100%;
+            width: 220px;
+            transform: translateX(-100%);
+            z-index: 1000;
+          }
+          .sidebar.open {
             transform: translateX(0);
-            width: ${sidebarOpen ? "220px" : "0"};
           }
-
-          .sidebar-toggle {
-            display: block;
-            position: absolute;
-            top: 10px;
-            right: -45px;
-            background: #1b1b1b;
-            border-radius: 5px;
+          .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
           }
-        }
-
-        @media (max-width: 768px) {
-          .sidebar-btn .label {
-            font-size: 0.8rem;
-          }
-          .sidebar-btn { padding: 10px; }
-        }
-
-        @media (max-width: 480px) {
-          .sidebar-btn .label { display: none; }
-          .sidebar { width: ${sidebarOpen ? "150px" : "0"}; }
+          .overlay.show { display: block; }
+          .sidebar-header { display: flex; justify-content: flex-end; padding: 10px; }
+          .close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
         }
       `}</style>
     </>
