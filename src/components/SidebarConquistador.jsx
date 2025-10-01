@@ -42,6 +42,7 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
       ></div>
 
       <style>{`
+        /* --- SIDEBAR DESKTOP --- */
         .sidebar {
           background: #1b1b1b;
           color: #fff;
@@ -49,7 +50,11 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
           height: 100vh;
           display: flex;
           flex-direction: column;
-          position: relative;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 100;
+          transition: transform 0.3s ease;
         }
         .sidebar-btn {
           display: flex;
@@ -64,19 +69,12 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
         }
         .sidebar-btn:hover { background: #333; }
         .sidebar-btn.active { background: #28a745; color: #fff; }
-        .sidebar-btn .icon { font-size: 1.2rem; margin-right: 10px; display: flex; justify-content: center; width: 25px; }
+        .sidebar-btn .icon { font-size: 1.2rem; margin-right: 10px; width: 25px; text-align: center; }
 
-        /* Drawer móvil */
+        /* --- DRAWER MÓVIL --- */
         @media (max-width: 768px) {
           .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 220px;
             transform: translateX(-100%);
-            z-index: 1000;
-            transition: transform 0.3s ease;
           }
           .sidebar.open { transform: translateX(0); }
           .overlay {
@@ -87,7 +85,7 @@ export const SidebarConquistador = ({ setModuloActivo, moduloActivo, drawerOpen,
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 999;
+            z-index: 99;
           }
           .overlay.show { display: block; }
           .sidebar-header { display: flex; justify-content: flex-end; padding: 10px; }

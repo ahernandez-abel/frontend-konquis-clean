@@ -64,8 +64,7 @@ const ConquistadorDashboard = () => {
   const { user } = useContext(AuthContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
-   const toggleSidebar = () => setSidebarOpen(prev => !prev);
+  const toggleSidebar = () => setSidebarOpen(prev => !prev);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -113,7 +112,6 @@ const ConquistadorDashboard = () => {
         setNotificaciones(notificacionesRes.data?.data || {});
         setTemporada(temporadaRes.data?.data || {});
 
-        // --- USUARIO CON DATOS REALES DE LA DB ---
         const usuarioData = usuarioRes.data?.data || {};
         setUsuario({
           ...usuarioData,
@@ -169,18 +167,24 @@ const ConquistadorDashboard = () => {
     (misionesIndividuales.filter(m => m.estado === "completada").length || 0) +
     (misionesUnidad.filter(m => m.estado === "completada").length || 0);
 
-  // --- CALCULO DE BARRA XP ---
   const xpActual = usuario.xp % 1000;
   const xpMax = 1000;
   const porcentajeXP = Math.min(100, (xpActual / xpMax) * 100);
 
-  
-   return (
+  return (
     <div className="dashboard-container" style={{ display: "flex", minHeight: "100vh" }}>
-      <SidebarConquistador setModuloActivo={handleModuloActivo} moduloActivo={moduloActivo} drawerOpen={sidebarOpen} setDrawerOpen={setSidebarOpen} />
+      {/* SIDEBAR */}
+      <SidebarConquistador
+        setModuloActivo={handleModuloActivo}
+        moduloActivo={moduloActivo}
+        drawerOpen={sidebarOpen}
+        setDrawerOpen={setSidebarOpen}
+      />
+
+      {/* CONTENIDO PRINCIPAL */}
       <div className="main-content" style={{ flex: 1, padding: "20px", overflowY: "auto" }}>
         <HeaderConquistado toggleSidebar={toggleSidebar} />
-        
+
         <div className="rpg-dashboard">
           <div className="perfil-rpg" style={{ display: "flex", gap: "60px", alignItems: "flex-start", flexWrap: "wrap" }}>
             {/* IZQUIERDA: AVATAR */}
