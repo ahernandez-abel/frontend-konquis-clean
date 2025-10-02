@@ -898,7 +898,7 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  min-width: 500px; /* scroll horizontal solo si es necesario */
+  min-width: 300px; /* scroll horizontal solo si es necesario */
 }
 
 .misiones-table th,
