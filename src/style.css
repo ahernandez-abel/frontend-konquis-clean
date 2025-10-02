@@ -21,17 +21,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-
-  /* Animación de movimiento sutil del fondo */
   animation: bgMove 60s linear infinite;
 }
 
-/* Animación de desplazamiento lento de fondo */
 @keyframes bgMove {
   0% { background-position: center top; }
   50% { background-position: center bottom; }
@@ -44,8 +40,6 @@ body {
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   z-index: 0;
-
-  /* Animación leve de parpadeo de la capa */
   animation: overlayPulse 5s ease-in-out infinite;
 }
 
@@ -63,8 +57,6 @@ body {
   letter-spacing: 3px;
   z-index: 1;
   position: relative;
-
-  /* Brillo dorado animado */
   animation: glowText 2.5s ease-in-out infinite alternate;
 }
 
@@ -73,18 +65,17 @@ body {
   to   { text-shadow: 0 0 30px #ffd700, 4px 4px 40px rgba(0,0,0,1); }
 }
 
+/* FORMULARIO */
 .login-form {
   display: flex;
   flex-direction: column;
   width: 420px;
   gap: 20px;
-
   background: rgba(30, 30, 50, 0.85);
   padding: 50px;
   border-radius: 25px;
   border: 3px solid gold;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4),
-              0 15px 60px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 15px 60px rgba(0, 0, 0, 0.9);
   z-index: 1;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -92,12 +83,18 @@ body {
 
 .login-form:hover {
   transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(255, 215, 0, 0.6),
-              0 20px 80px rgba(0, 0, 0, 1);
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 20px 80px rgba(0, 0, 0, 1);
+}
+
+/* INPUTS UNIFORMES */
+.input-wrapper {
+  position: relative; /* para el icono dentro */
+  width: 100%;
 }
 
 .login-form input {
-  padding: 16px;
+  width: 100%;           /* mismo tamaño para todos */
+  padding: 16px 45px 16px 16px; /* espacio derecho para el ojo */
   border-radius: 15px;
   border: 2px solid rgba(255, 215, 0, 0.3);
   background: rgba(10,10,20,0.9);
@@ -119,6 +116,19 @@ body {
   font-style: italic;
 }
 
+/* ICONO OJO DENTRO DEL INPUT */
+.input-wrapper span.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ffd700;
+  font-size: 1.2rem;
+  z-index: 2;
+}
+
+/* BOTON LOGIN */
 .login-form button {
   padding: 16px;
   border-radius: 20px;
@@ -129,19 +139,15 @@ body {
   font-weight: bold;
   font-size: 1.3rem;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6),
-              0 5px 25px rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), 0 5px 25px rgba(255, 215, 0, 0.7);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  /* Brillo animado en botón */
   animation: buttonGlow 3s ease-in-out infinite alternate;
 }
 
 .login-form button:hover {
   background: linear-gradient(90deg, #ffae00, #ffd700);
   transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.9),
-              0 10px 40px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.9), 0 10px 40px rgba(0, 0, 0, 0.9);
 }
 
 @keyframes buttonGlow {
@@ -163,31 +169,32 @@ body {
 /* LOGIN RESPONSIVE */
 @media (max-width: 480px) {
   .login-form {
-    width: 90%;         /* Ocupa casi todo el ancho de la pantalla */
-    padding: 30px;      /* Menos padding para caber en móviles */
-    gap: 15px;          /* Ajuste de espacio entre inputs */
+    width: 90%;
+    padding: 30px;
+    gap: 15px;
   }
 
   .login-container h1 {
-    font-size: 2.2rem;  /* Reduce el tamaño del título */
+    font-size: 2.2rem;
     margin-bottom: 25px;
   }
 
   .login-form input {
-    font-size: 1rem;    /* Ajusta tamaño de texto de inputs */
-    padding: 12px;      /* Menor padding */
+    font-size: 1rem;
+    padding: 12px 40px 12px 12px; /* espacio para ojo */
   }
 
   .login-form button {
-    font-size: 1.1rem;  /* Botón más pequeño */
+    font-size: 1.1rem;
     padding: 12px;
   }
 
-  span { /* Icono de mostrar/ocultar password */
-    right: 15px;
+  .input-wrapper span.toggle-password {
     font-size: 16px;
+    right: 12px;
   }
 }
+
 
 /* ---------------- DASHBOARD ---------------- */
 .dashboard-container {
