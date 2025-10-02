@@ -1000,8 +1000,8 @@ button {
   }
 
   .action-buttons button {
-    flex: 1 1 45%;
-    min-width: 100px;
+    flex: 1 1 100%; /* cada botón ocupa toda la fila en celular */
+    min-width: 0;
     margin-bottom: 5px;
   }
 }
