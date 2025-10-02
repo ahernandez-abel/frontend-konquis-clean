@@ -471,6 +471,33 @@ button {
   color: #aaa;
 }
 
+/* ---------- CHECKBOX ---------- */
+.usuario-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio entre el check y el texto */
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.usuario-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ffb400; /* dorado cuando está marcado */
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Texto brillante RPG cuando el check está activo */
+.usuario-form input[type="checkbox"]:checked + span {
+  color: #ffd700;
+  text-shadow: 0 0 8px #ffd700, 0 0 15px rgba(255,215,0,0.7);
+  font-weight: bold;
+}
+
+/* ---------- BOTONES ---------- */
 .usuario-form button {
   padding: 10px 15px;
   border: none;
@@ -485,6 +512,7 @@ button {
 .usuario-form button:hover {
   background: #ffd700;
 }
+
 
 /* ----------------- TABLA ----------------- */
 .usuarios-card {
@@ -629,19 +657,27 @@ button {
 .unidad-form select {
   padding: 8px 10px;
   border-radius: 5px;
-  border: none;
+  border: 2px solid #444;
   outline: none;
   font-size: 1rem;
   background: #333;
   color: #fff;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.unidad-form input:focus,
+.unidad-form select:focus {
+  border-color: #ffb400;
+  box-shadow: 0 0 6px #ffb400;
 }
 
 .unidad-form input::placeholder {
   color: #aaa;
 }
 
+/* Botones */
 .unidad-form button {
   padding: 10px 15px;
   border: none;
@@ -656,6 +692,45 @@ button {
 
 .unidad-form button:hover {
   background: #ffd700;
+}
+
+/* ----------------- CHECKBOX LISTA ----------------- */
+.usuarios-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.usuarios-list li label {
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  gap: 8px;
+  background: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.usuarios-list li label:hover {
+  background: #444;
+}
+
+.usuarios-list input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ffb400;
+  cursor: pointer;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.usuarios-list input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* ----------------- TABLA DE UNIDADES ----------------- */
