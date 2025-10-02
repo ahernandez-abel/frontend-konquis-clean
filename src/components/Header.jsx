@@ -3,32 +3,28 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext.js";
 import { FaSignOutAlt } from "react-icons/fa";
 
-export const Header = () => {
+export const Header = ({ drawerOpen, setDrawerOpen }) => {
   const { user, logout } = useContext(AuthContext);
 
   return (
     <div className="header">
-      <div>
-        Bienvenido, <span style={{ color: "#ffdd57" }}>{user?.nombre || "Admin"}</span>
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        {/* Botón hamburguesa */}
+        <div 
+          className={`hamburger ${drawerOpen ? "open" : ""}`}
+          onClick={() => setDrawerOpen(!drawerOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div>
+          Bienvenido, <span className="user-nombre">{user?.nombre || "Admin"}</span>
+        </div>
       </div>
-      <button
-        onClick={logout}
-        style={{
-          background: "rgba(255,221,87,0.2)",
-          border: "none",
-          borderRadius: "12px",
-          padding: "8px 12px",
-          color: "#111",
-          fontWeight: "bold",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: "5px",
-          transition: "all 0.3s ease",
-        }}
-        onMouseEnter={(e) => (e.target.style.background = "#ffdd57")}
-        onMouseLeave={(e) => (e.target.style.background = "rgba(255,221,87,0.2)")}
-      >
+
+      <button className="logout-btn" onClick={logout}>
         <FaSignOutAlt /> Cerrar sesión
       </button>
     </div>
