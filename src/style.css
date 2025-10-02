@@ -904,14 +904,13 @@ button {
   background: #1f1f1f;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  overflow: hidden;
 }
 
 .misiones-table-wrapper {
   width: 100%;
   max-height: 500px;
-  overflow-y: auto; /* scroll vertical si hay muchas filas */
-  overflow-x: auto; /* scroll horizontal si la tabla es muy ancha */
+  overflow-y: auto; /* scroll vertical */
+  overflow-x: auto; /* scroll horizontal */
   border-radius: 8px;
 }
 
@@ -920,16 +919,13 @@ button {
   border-collapse: collapse;
   margin-top: 10px;
   table-layout: auto;
-  min-width: 600px; /* para que tenga scroll horizontal si es necesario */
+  min-width: 800px; /* más espacio para botones */
 }
 
 .misiones-table th,
 .misiones-table td {
   padding: 10px;
   text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .misiones-table th {
@@ -943,6 +939,8 @@ button {
 .misiones-table td {
   background: #222;
   border-bottom: 1px solid #444;
+  white-space: normal; /* permite que el contenido se ajuste */
+  overflow: visible;   /* que los botones no se corten */
 }
 
 /* ----------------- BOTONES DE ACCIÓN ----------------- */
@@ -951,6 +949,7 @@ button {
   flex-wrap: wrap;
   gap: 5px;
   justify-content: flex-start;
+  white-space: nowrap; /* los botones en línea */
 }
 
 .action-buttons button {
@@ -960,7 +959,7 @@ button {
   border: none;
   cursor: pointer;
   flex: 1 0 auto;
-  min-width: 70px;
+  min-width: 80px; /* ancho mínimo de botón */
   text-align: center;
 }
 
