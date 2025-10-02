@@ -89,7 +89,7 @@ body {
 /* INPUTS UNIFORMES */
 .input-wrapper {
   position: relative; /* para el icono dentro */
-  width: 80%;
+  width: 100%;
 }
 
 .login-form input {
