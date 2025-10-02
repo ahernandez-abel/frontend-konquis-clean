@@ -888,47 +888,26 @@ button {
 
 /* ----------------- TABLA ----------------- */
 .misiones-card {
-  position: relative;
+  width: 100%;
   border-radius: 8px;
   background: #1f1f1f;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
   overflow: hidden;
-  max-height: 500px; /* altura máxima del contenedor para scroll vertical */
-}
-
-.misiones-card::before,
-.misiones-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 20px;
-  height: 100%;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.misiones-card::before {
-  left: 0;
-  background: linear-gradient(to right, #1f1f1f, transparent);
-}
-
-.misiones-card::after {
-  right: 0;
-  background: linear-gradient(to left, #1f1f1f, transparent);
 }
 
 .misiones-table-wrapper {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 450px; /* altura para scroll vertical */
+  width: 100%;
+  max-height: 500px; /* Altura para scroll vertical */
+  overflow-y: auto;  /* Scroll vertical */
+  overflow-x: auto;  /* Scroll horizontal solo si es necesario */
 }
 
 .misiones-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  min-width: 600px;
+  table-layout: fixed; /* Mantiene las columnas dentro del ancho del contenedor */
 }
 
 .misiones-table th,
@@ -936,6 +915,8 @@ button {
   padding: 10px;
   text-align: left;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .misiones-table th {
@@ -981,11 +962,6 @@ button {
 
   .module-container h2 {
     font-size: 1.5rem;
-  }
-
-  .misiones-card::before,
-  .misiones-card::after {
-    display: none;
   }
 }
 
