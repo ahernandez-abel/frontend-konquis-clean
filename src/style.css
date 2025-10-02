@@ -790,9 +790,10 @@ button {
 
 /* ----------------- CABECERA ----------------- */
 .module-container h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 1.8rem;
   color: #ffd700;
+  text-align: left;
 }
 
 /* ----------------- FILTROS Y BUSCADOR ----------------- */
@@ -800,19 +801,19 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .misiones-filtros input,
 .misiones-filtros select {
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 5px;
   border: none;
   outline: none;
   font-size: 1rem;
   background: #333;
   color: #fff;
-  flex: 1 1 200px;   /* crece proporcionalmente, mínimo 200px */
+  flex: 1 1 200px; /* crece proporcionalmente */
   min-width: 150px;
   box-sizing: border-box;
 }
@@ -822,7 +823,7 @@ button {
 }
 
 .misiones-filtros button {
-  padding: 8px 15px;
+  padding: 10px 18px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -853,7 +854,7 @@ button {
 .misiones-form input,
 .misiones-form select,
 .misiones-form textarea {
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -870,7 +871,7 @@ button {
 }
 
 .misiones-form button {
-  padding: 10px 15px;
+  padding: 12px 18px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -887,18 +888,47 @@ button {
 
 /* ----------------- TABLA ----------------- */
 .misiones-card {
-  overflow-x: auto;
+  position: relative;
   border-radius: 8px;
   background: #1f1f1f;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  overflow: hidden;
+  max-height: 500px; /* altura máxima del contenedor para scroll vertical */
+}
+
+.misiones-card::before,
+.misiones-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.misiones-card::before {
+  left: 0;
+  background: linear-gradient(to right, #1f1f1f, transparent);
+}
+
+.misiones-card::after {
+  right: 0;
+  background: linear-gradient(to left, #1f1f1f, transparent);
+}
+
+.misiones-table-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 450px; /* altura para scroll vertical */
 }
 
 .misiones-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  min-width: 300px; /* scroll horizontal solo si es necesario */
+  min-width: 600px;
 }
 
 .misiones-table th,
@@ -911,6 +941,9 @@ button {
 .misiones-table th {
   background: #333;
   color: #ffd700;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .misiones-table td {
@@ -949,7 +982,13 @@ button {
   .module-container h2 {
     font-size: 1.5rem;
   }
+
+  .misiones-card::before,
+  .misiones-card::after {
+    display: none;
+  }
 }
+
 
 /* ---------------- GAMIFICACION ---------------- */
 .module-container {
