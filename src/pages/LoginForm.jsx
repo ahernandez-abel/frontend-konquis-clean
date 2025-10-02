@@ -45,19 +45,22 @@ export default function LoginForm() {
           required
         />
 
-        {/* Password */}
-        <div className="password-wrapper">
-          <input
-            type={mostrarPassword ? "text" : "password"}
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <span onClick={() => setMostrarPassword((prev) => !prev)}>
-            {mostrarPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
-        </div>
+       {/* Password */}
+<div className="input-wrapper">
+  <input
+    type={mostrarPassword ? "text" : "password"}
+    placeholder="Contraseña"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+  <span 
+    className="toggle-password" 
+    onClick={() => setMostrarPassword((prev) => !prev)}
+  >
+    {mostrarPassword ? <FaEyeSlash /> : <FaEye />}
+  </span>
+</div>
 
         {/* Botón */}
         <button type="submit">Iniciar Sesión</button>
