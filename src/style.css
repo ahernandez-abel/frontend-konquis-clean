@@ -804,36 +804,36 @@ button {
 }
 
 .misiones-filtros input,
-.misiones-filtros select,
-.misiones-filtros button {
+.misiones-filtros select {
   padding: 8px 12px;
   border-radius: 5px;
   border: none;
   outline: none;
   font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.misiones-filtros input,
-.misiones-filtros select {
   background: #333;
   color: #fff;
+  flex: 1 1 200px;   /* crece proporcionalmente, mínimo 200px */
+  min-width: 150px;
+  box-sizing: border-box;
 }
 
 .misiones-filtros input::placeholder {
   color: #aaa;
 }
 
-.misiones-filtros button.btn-crear {
+.misiones-filtros button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
   background: #28a745;
   color: #fff;
   font-weight: bold;
-  cursor: pointer;
   transition: 0.3s;
+  flex: 0 0 auto; /* tamaño fijo */
 }
 
-.misiones-filtros button.btn-crear:hover {
+.misiones-filtros button:hover {
   background: #45d163;
 }
 
@@ -898,14 +898,14 @@ button {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  min-width: 600px; /* Para permitir scroll horizontal en móvil */
+  min-width: 500px; /* scroll horizontal solo si es necesario */
 }
 
 .misiones-table th,
 .misiones-table td {
   padding: 10px;
   text-align: left;
-  white-space: nowrap; /* Evita que se rompa el contenido */
+  white-space: nowrap;
 }
 
 .misiones-table th {
@@ -929,6 +929,13 @@ button {
 .btn-eliminar:hover { background: #e4606d; }
 
 /* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 1024px) {
+  .misiones-filtros input,
+  .misiones-filtros select {
+    flex: 1 1 150px;
+  }
+}
+
 @media (max-width: 768px) {
   .misiones-filtros {
     flex-direction: column;
