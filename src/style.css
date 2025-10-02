@@ -813,7 +813,7 @@ button {
   font-size: 1rem;
   background: #333;
   color: #fff;
-  flex: 1 1 200px; /* crece proporcionalmente */
+  flex: 1 1 200px;
   min-width: 150px;
   box-sizing: border-box;
 }
@@ -831,7 +831,7 @@ button {
   color: #fff;
   font-weight: bold;
   transition: 0.3s;
-  flex: 0 0 auto; /* tamaño fijo */
+  flex: 0 0 auto;
 }
 
 .misiones-filtros button:hover {
@@ -898,16 +898,16 @@ button {
 
 .misiones-table-wrapper {
   width: 100%;
-  max-height: 500px; /* Altura para scroll vertical */
-  overflow-y: auto;  /* Scroll vertical */
-  overflow-x: auto;  /* Scroll horizontal solo si es necesario */
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .misiones-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  table-layout: fixed; /* Mantiene las columnas dentro del ancho del contenedor */
+  table-layout: fixed;
 }
 
 .misiones-table th,
@@ -933,6 +933,24 @@ button {
 }
 
 /* ----------------- BOTONES DE ACCIÓN ----------------- */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.action-buttons button {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  flex: 1 0 auto; /* ajuste flexible */
+  min-width: 60px; /* ancho mínimo */
+  text-align: center;
+}
+
 .btn-editar { background: #007bff; color: #fff; }
 .btn-editar:hover { background: #3399ff; }
 
@@ -962,6 +980,16 @@ button {
 
   .module-container h2 {
     font-size: 1.5rem;
+  }
+
+  .action-buttons {
+    justify-content: flex-start;
+  }
+
+  .action-buttons button {
+    flex: 1 1 45%;
+    min-width: 100px;
+    margin-bottom: 5px;
   }
 }
 
