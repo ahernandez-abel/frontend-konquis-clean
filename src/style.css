@@ -805,7 +805,9 @@ button {
   align-items: center;
 }
 
+/* Inputs de texto, fecha y selects */
 .misiones-filtros input[type="text"],
+.misiones-filtros input[type="date"],
 .misiones-filtros select {
   padding: 10px 12px;
   border-radius: 5px;
@@ -819,15 +821,18 @@ button {
   box-sizing: border-box;
 }
 
+/* Placeholder */
+.misiones-filtros input::placeholder {
+  color: #aaa;
+}
+
+/* Checkboxes */
 .misiones-filtros input[type="checkbox"] {
   width: auto; /* checkboxes no se estiran */
   margin-right: 5px;
 }
 
-.misiones-filtros input::placeholder {
-  color: #aaa;
-}
-
+/* Botones de filtro */
 .misiones-filtros button {
   padding: 10px 18px;
   border-radius: 5px;
@@ -842,6 +847,12 @@ button {
 
 .misiones-filtros button:hover {
   background: #45d163;
+}
+
+/* ----------------- Estilo extra para calendario en dark mode ----------------- */
+.misiones-filtros input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* icono blanco en fondo oscuro */
+  cursor: pointer;
 }
 
 /* ----------------- FORMULARIO ----------------- */
